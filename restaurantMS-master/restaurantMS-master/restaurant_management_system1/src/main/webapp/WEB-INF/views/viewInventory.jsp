@@ -48,7 +48,7 @@
 </script>
 </head>
 
-<body background="resources/css/bg.jpg">
+<body background="resources/css/bg2.jpg" style="background-size:cover">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#" style="font-size:7mm;">Foodster</a>
         <div class="collapse navbar-collapse" id="navbarText">
@@ -88,27 +88,29 @@
             <div class="col-md-3 bg-dark">
                 <br>
                 <span>
-                    <h4 style="color:white">Profile</h4>
+                    <h4 align="center" style="background:white;border-radius:50px 50px;padding:0px 5px;">Profile</h4>
                 </span>
                 <br>
                 <center>
+                <img src="resources/css/user_icon.png" style="width:75px">
                     <br>
                     <br>
-                    <b style="color:white">${employee.firstName} ${employee.lastName}
+                    <b style="font-size:7mm;background:white;border-radius:50px 50px;padding:0px 5px;">${employee.firstName} ${employee.lastName}
                     </b>
                     <br>
                     <br>
-                    <p style="color:white">Age: ${employee.age}</p>
                     <br>
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">Age: ${employee.age}</p>
+                
                     <br>
-                    <p style="color:white">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Gender:
 
                         ${employee.gender}
                     </p>
+                    
                     <br>
-                    <br>
-                    <p style="color:white">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Contact:
                         ${employee.contactNumber}
                     </p>
@@ -119,11 +121,16 @@
             <div class="col-md-9" style="background-color: rgba(182, 182, 182, 0.7)">
                     <div class="container">
                             <div class="row">
-                                <select name="sorting" onchange="location = this.value;" class="btn btn-dark col-md-2 p-0 m-2 mr-5">
-                                    <option value="">Sorting Type-Total Stock</option>
-                                    <option value="sortInventory.html?order=LTH">Low To High</option>
-                                    <option value="sortInventory.html?order=HTL">High To Low</option>
-                                </select>
+                               <div class="dropdown show">
+  <a class="btn btn-dark dropdown-toggle m-2 p-2" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by-Total Stock
+  </a>
+
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="sortInventory.html?order=LTH">Low to High</a>
+    <a class="dropdown-item" href="sortInventory.html?order=HTL">High to Low</a>
+  </div>
+</div>
                     
                             
                                         <form class="col-6 m-2 d-inline" style="height:17px;" action="searchInventory.html" method="POST">
@@ -167,7 +174,7 @@
                                     <td><font color="black">${inventory.endDate}</font></td>
                                     <td><font color="black">${inventory.totalStock}</font></td>
                                 
-                                    <td style="border-right: none; border-left: rgb(202, 202, 202) 1px solid; width:300px;">
+                                    <td style="border-right: none; border-left: rgb(202, 202, 202) 1px solid; width:150px;">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                         
                                             <a href="editInventory.html?id=${inventory.inventoryId}" class="btn btn-secondary"><i

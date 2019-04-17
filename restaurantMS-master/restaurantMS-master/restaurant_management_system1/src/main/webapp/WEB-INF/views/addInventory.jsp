@@ -57,12 +57,19 @@ function validation(){
 	//alert("he");
 var startingDate = document.forms["addInventory"]["startDate"].value;
 var endingDate = document.forms["addInventory"]["endDate"].value;
+var name = document.forms["addInventory"]["inventoryName"].value;
+var stock = document.forms["addInventory"]["totalStock"].value;
 
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 today = mm + '/' + dd + '/' + yyyy;
+
+if(!(/^[a-zA-z]*$/g.test(name))){
+	   alert('First Name should be alphabet only');
+	  return false;
+}
 
 if (Date.parse(startingDate) > Date.parse(today) || Date.parse(endingDate) < Date.parse(today)) {
     alert("Please enter valid starting and ending dates.1");
@@ -73,11 +80,13 @@ if (Date.parse(startingDate) > Date.parse(endingDate)) {
     alert("Please enter valid starting and ending dates.2");
     return false;
 }
+
+return true;
 }
 </script>
 </head>
 
-<body background="resources/css/bg.jpg">
+<body background="resources/css/bg2.jpg" style="background-size:cover">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#" style="font-size:7mm;">Foodster</a>
         <div class="collapse navbar-collapse" id="navbarText">
@@ -115,29 +124,31 @@ if (Date.parse(startingDate) > Date.parse(endingDate)) {
     <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;margin:30px;">
         <div class="row">
             <div class="col-md-3 bg-dark">
-                <br>
+            <br>
                 <span>
-                    <h4 style="color:white">Profile</h4>
+                    <h4 align="center" style="background:white;border-radius:50px 50px;padding:0px 5px;">Profile</h4>
                 </span>
                 <br>
                 <center>
+                <img src="resources/css/user_icon.png" style="width:75px">
                     <br>
                     <br>
-                    <b style="color:white">${employee.firstName} ${employee.lastName}
+                    <b style="font-size:7mm;background:white;border-radius:50px 50px;padding:0px 5px;">${employee.firstName} ${employee.lastName}
                     </b>
                     <br>
                     <br>
-                    <p style="color:white">Age: ${employee.age}</p>
                     <br>
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">Age: ${employee.age}</p>
+                
                     <br>
-                    <p style="color:white">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Gender:
 
                         ${employee.gender}
                     </p>
+                    
                     <br>
-                    <br>
-                    <p style="color:white">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Contact:
                         ${employee.contactNumber}
                     </p>

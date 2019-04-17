@@ -32,14 +32,24 @@ public class InventoryController {
 	public String getAddInventory(){
 		return "addInventory";
 	}
+	
+	//Redirect to viewInventory page
 	@GetMapping(value="viewInventory")
 	public ModelAndView getViewInventory(){
 		ModelAndView modelAndView= new ModelAndView();
+		if(inventoryService.getAllInventory()!=null){
 		modelAndView.addObject("inventorys",inventoryService.getAllInventory());
-		modelAndView.setViewName("viewInventory");
+		modelAndView.setViewName("viewInventory");}
+		
+		else
+		{
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 	
+	
+	//Add an inventory in the database
 	@RequestMapping(value="addInventory.html",method=RequestMethod.POST)
 	public ModelAndView addInventory(@ModelAttribute Inventory inventory){
 		ModelAndView modelAndView = new ModelAndView();
@@ -50,44 +60,63 @@ public class InventoryController {
 			modelAndView.setViewName("viewInventory");
 			modelAndView.addObject("inventorys",inventoryService.getAllInventory());
 		}else{
-			String info = "Inventory Id already exists.";
-		modelAndView.addObject("info",info);
-		modelAndView.setViewName("addInventory");
+		//	String info = "Inventory Id already exists.";
+	//	modelAndView.addObject("info",info);
+		modelAndView.setViewName("error");
 		}
 			
 		return modelAndView;
 	}
 	
+	//Delete a particular inventory
 	@GetMapping(value="deleteInventory.html")
 	public ModelAndView deleteInventory(@RequestParam String id){
 		ModelAndView modelAndView= new ModelAndView();
 		Inventory inventory= inventoryService.getInventory(id);
 		if("success".equals(inventoryService.deleteInventory(inventory))){
-			String info = "Inventory Deleted";
-			modelAndView.addObject("info",info);
+			//String info = "Inventory Deleted";
+			//modelAndView.addObject("info",info);
 			modelAndView.addObject("inventorys",inventoryService.getAllInventory());
 			modelAndView.setViewName("viewInventory");
 		}else{
-			modelAndView.addObject("inventorys",inventoryService.getAllInventory());
-			modelAndView.setViewName("viewInventory");
+			//modelAndView.addObject("inventorys",inventoryService.getAllInventory());
+			modelAndView.setViewName("error");
 		}
 		return modelAndView;
 	}
 	
+	
+	//Search a particular inventory
 	@PostMapping(value="searchInventory.html")
 	public ModelAndView searchInventory(@RequestParam String name){
 		ModelAndView modelAndView = new ModelAndView();
+		if(inventoryService.searchInventory(name)!=null){
 		modelAndView.addObject("inventorys",inventoryService.searchInventory(name));
-		modelAndView.setViewName("viewInventory");
+		modelAndView.setViewName("viewInventory");}
+		else
+		{
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
+	
+	//Sort the inventory list
 	@GetMapping(value="sortInventory")
 	public ModelAndView sortInventory(@RequestParam String order){
 		ModelAndView modelAndView = new ModelAndView();
+		
+		if(inventoryService.sortInventory(order)!=null){
 		modelAndView.addObject("inventorys",inventoryService.sortInventory(order));
-		modelAndView.setViewName("viewInventory");
+		modelAndView.setViewName("viewInventory");}
+		
+		else
+		{
+			modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
+	
+	//Redirect to edit inventory page for updating the inventory details
 	@GetMapping(value="editInventory")
 	public ModelAndView getEditInventory(@RequestParam String id){
 		ModelAndView modelAndView = new ModelAndView();
@@ -96,7 +125,7 @@ public class InventoryController {
 		return modelAndView;
 	}
 	
-	
+	//Redirect to viewInventory Page after editing of a particular inventory
 	@PostMapping(value="editInventory")
 	public ModelAndView editInventory(@ModelAttribute Inventory inventory){
 		ModelAndView modelAndView = new ModelAndView();
@@ -107,8 +136,8 @@ public class InventoryController {
 			modelAndView.addObject("inventorys",inventoryService.getAllInventory());
 			modelAndView.setViewName("viewInventory");
 		}else{
-			modelAndView.addObject("inventorys",inventoryService.getAllInventory());
-			modelAndView.setViewName("viewInventory");
+		//	modelAndView.addObject("inventorys",inventoryService.getAllInventory());
+			modelAndView.setViewName("error");
 		}return modelAndView;
 	}
 }

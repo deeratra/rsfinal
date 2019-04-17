@@ -19,6 +19,8 @@ public class InventoryDAOImpl implements InventoryDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 	@Override
+	
+	
 	public String addInventory(Inventory inventory) {
 		// TODO Auto-generated method stub
 		try {

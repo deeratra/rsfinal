@@ -32,24 +32,29 @@ public class LoginController {
 		return "login";
 	}
 	
-	//Redirect to addInventory page after successful authencation of Id and Password
+	//Redirect to addInventory page after successful authentication of Id and Password
 	@RequestMapping(value="login.html",method=RequestMethod.POST)
 	public ModelAndView Login(@ModelAttribute Login login, HttpSession httpSession){
 		ModelAndView mav = new ModelAndView();
-		Login login1 =loginService.Authenticate(login);
-		if(login1 != null){
+		int a =loginService.Authenticate(login);
+		if(a == 1){
 			mav.setViewName("addInventory");
+			Login login1 = loginService.getProfile(login);
 			
 			httpSession.setAttribute("employee", login1);
 			
 		}
-		else{
+		else {
 			String info = "Wrong Credentials";
 			httpSession.setAttribute("loginError", info);
 			mav.addObject("info",info);
 			mav.setViewName("login");
-		}return mav;
-	}
+		}
+		
+		return mav;
+		}
+			
+	
 	
 	@RequestMapping(value="login.html")
 	public String getLogin(HttpSession httpSession){
@@ -65,20 +70,21 @@ public class LoginController {
 		String ans = loginService.registerAdmin(login);
 		if("yes".equals(ans))
 		{
-		//	String info = new String("Details Added Successfully");
-		//	modelAndView.addObject("info",info);
+			String info = new String("Details Added Successfully");
+			modelAndView.addObject("loginError",info);
+			//modelAndView
 			modelAndView.setViewName("login");
 			return modelAndView;
 		}
 		else if ("no".equals(ans))
 		{
 		String info = new String("User Id already exists");
-		modelAndView.addObject("info",info);
+		modelAndView.addObject("loginError",info);
 			modelAndView.setViewName("login");
 		return modelAndView;
 		}
 		else{
-			modelAndView.setViewName("login");
+			modelAndView.setViewName("error");
 			return modelAndView;
 		}
 	}

@@ -34,6 +34,7 @@
 	   var contactNumber = document.forms["registration"]["contactNumber"].value;
 	   var password = document.forms["registration"]["password"].value;
 	   var confirmPassword = document.forms["registration"]["confirmPassword"].value;
+	   var age = document.forms["registration"]["age"].value;
 	  // console.log("gello");
 	   if(!(/^[a-zA-z]*$/g.test(firstName))){
 		   alert('First Name should be alphabet only');
@@ -55,9 +56,10 @@
 	   if(age<18)
 		   {
 		   alert('Age must be greater than 18');
+		   return false;
 		   }
 	   
-	   alert('Successfully registered');
+	  // alert('Successfully registered');
 	   document.forms["registration"].submit();
 	   return true; 
    }
@@ -83,9 +85,7 @@
                                     <label for="password" class="youpasswd"> Your password </label>
                                     <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
                                 </p>
-                                <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">Keep me logged in</label><div class=col-md-4>
+                               <div class=col-md-4>
 								
 								<span style="color:red"> ${loginError}</span>
 								

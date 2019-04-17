@@ -40,19 +40,28 @@ public class StaffController {
 			modelAndView.addObject("staffs",staffService.getAllStaff());
 			modelAndView.setViewName("viewStaff");
 		}else{
-			modelAndView.addObject("staffs",staffService.getAllStaff());
-		modelAndView.setViewName("viewStaff");}
+			//modelAndView.addObject("staffs",staffService.getAllStaff());
+		modelAndView.setViewName("error");}
 		return modelAndView;
 	}
+	
+	//Redirect to viewStaff page and displaying the list of all staffs
 	@RequestMapping(value="viewStaff.html")
 	public ModelAndView getViewStaff(){
 		ModelAndView modelAndView= new ModelAndView();
 		List<Staff> staffs=staffService.getAllStaff();
+		
+		if(staffs!=null){
 		modelAndView.setViewName("viewStaff");
 		modelAndView.addObject("staffs",staffs);
+		}
+		else
+			modelAndView.setViewName("error");
 		return modelAndView;
 	}
 	
+	
+	//Delete a particular staff by using the id of staff
 	@GetMapping(value="deleteStaff.html")
 	public ModelAndView deleteStaff(@RequestParam String id){
 		ModelAndView modelAndView= new ModelAndView();
@@ -63,20 +72,28 @@ public class StaffController {
 			modelAndView.addObject("staffs",staffService.getAllStaff());
 			modelAndView.setViewName("viewStaff");
 		}else{
-			modelAndView.addObject("staffs",staffService.getAllStaff());
-			modelAndView.setViewName("viewStaff");
+			//modelAndView.addObject("staffs",staffService.getAllStaff());
+			modelAndView.setViewName("error");
 		}
 		return modelAndView;
 	}
 	
+	
+	//search a particular staff by his name
 	@PostMapping(value="searchStaff.html")
 	public ModelAndView searchStaff(@RequestParam String name){
 		ModelAndView modelAndView = new ModelAndView();
+		if(staffService.searchStaff(name)!=null){
 		modelAndView.addObject("staffs",staffService.searchStaff(name));
 		modelAndView.setViewName("viewStaff");
+		}
+		else{
+		modelAndView.setViewName("error");
+		}
 		return modelAndView;
 	}
 	
+	//Redirect to edit staff page for updating the staff details
 	@GetMapping(value="editStaff.html")
 	public ModelAndView getEditStaff(@RequestParam String id){
 		ModelAndView modelAndView = new ModelAndView();
@@ -85,6 +102,8 @@ public class StaffController {
 		return modelAndView;
 	}
 	
+	
+	//Redirect to viewStaff Page after editing of a particular staff
 	@PostMapping(value="editStaff.html")
 	public ModelAndView editStaff(@ModelAttribute Staff staff){
 		ModelAndView modelAndView = new ModelAndView();
@@ -92,8 +111,8 @@ public class StaffController {
 			modelAndView.addObject("staffs",staffService.getAllStaff());
 			modelAndView.setViewName("viewStaff");
 		}else{
-			modelAndView.addObject("staffs",staffService.getAllStaff());
-			modelAndView.setViewName("viewStaff");
+		//	modelAndView.addObject("staffs",staffService.getAllStaff());
+			modelAndView.setViewName("error");
 		}return modelAndView;
 	}
 	}

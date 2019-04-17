@@ -51,9 +51,46 @@
    
 } */
 </style>
+<script type="text/javascript">
+
+function validation(){
+	 var firstName = document.forms["registration"]["firstName"].value;
+	   var lastName = document.forms["registration"]["lastName"].value;
+	 //  var contactNumber = document.forms["registration"]["contactNumber"].value;
+	//   var password = document.forms["registration"]["password"].value;
+	  // var confirmPassword = document.forms["registration"]["confirmPassword"].value;
+	  // console.log("gello");
+	 // var age = document.forms["registration"]["age"].value;
+	  
+	  var age = document.forms["registration"]["age"].value;
+	  
+	  
+	   if(!(/^[a-zA-z]*$/g.test(firstName))){
+		   alert('First Name should be alphabet only');
+		  return false;
+	   }
+	   if(!/^[a-zA-z]*$/g.test(lastName)){
+		   alert('Last Name should be alphabet only');
+	   return false;
+	   } 
+	   
+	   
+	   if(age<18)
+		   {
+		   alert('Age must be greater than 18');
+		   return false;
+		   }
+	   
+	   
+	  // alert('Successfully registered');
+	   
+	   return true; 
+
+}
+</script>
 </head>
 
-<body background="resources/css/bg.jpg">
+<body background="resources/css/bg2.jpg" style="background-size:cover">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#" style="font-size:7mm;">Foodster</a>
         <div class="collapse navbar-collapse" id="navbarText">
@@ -91,29 +128,31 @@
     <div style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;margin:30px;">
         <div class="row">
             <div class="col-md-3 bg-dark">
-                <br>
+                 <br>
                 <span>
-                    <h4 style="color:white">Profile</h4>
+                    <h4 align="center" style="background:white;border-radius:50px 50px;padding:0px 5px;">Profile</h4>
                 </span>
                 <br>
                 <center>
+                <img src="resources/css/user_icon.png" style="width:75px">
                     <br>
                     <br>
-                    <b style="color:white">${employee.firstName} ${employee.lastName}
+                    <b style="font-size:7mm;background:white;border-radius:50px 50px;padding:0px 5px;">${employee.firstName} ${employee.lastName}
                     </b>
                     <br>
                     <br>
-                    <p style="color:white">Age: ${employee.age}</p>
                     <br>
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">Age: ${employee.age}</p>
+                
                     <br>
-                    <p style="color:white">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Gender:
 
                         ${employee.gender}
                     </p>
+                    
                     <br>
-                    <br>
-                    <p style="color:white">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Contact:
                         ${employee.contactNumber}
                     </p>
@@ -123,7 +162,7 @@
 
             <div class="col-md-9 pt-2" style="background-color: rgba(182, 182, 182, 0.7)">
             <h3>Add New Staff</h3>
-                <form class="m-8" action="addStaff.html" method="POST">
+                <form class="m-8" name="registration" onsubmit="return validation() "action="addStaff.html" method="POST">
                 <div class="input-group input-group mb-3">
                     <!-- <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Staff Id</span>

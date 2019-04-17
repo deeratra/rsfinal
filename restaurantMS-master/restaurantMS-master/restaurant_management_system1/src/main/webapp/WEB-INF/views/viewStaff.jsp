@@ -41,7 +41,7 @@
 </style>
 </head>
 
-<body background="resources/css/bg.jpg">
+<body background="resources/css/bg2.jpg" style="background-size:cover">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#" style="font-size:7mm;">Foodster</a>
         <div class="collapse navbar-collapse" id="navbarText">
@@ -81,28 +81,29 @@
             <div class="col-md-3 bg-dark">
                 <br>
                 <span>
-                    <h4 align="center" style="color:white">Profile</h4>
+                    <h4 align="center" style="background:white;border-radius:50px 50px;padding:0px 5px;">Profile</h4>
                 </span>
                 <br>
                 <center>
+                <img src="resources/css/user_icon.png" style="width:75px">
                     <br>
                     <br>
-                    <b style="color:white;font-size:5mm">${employee.firstName} ${employee.lastName}
+                    <b style="font-size:7mm;background:white;border-radius:50px 50px;padding:0px 5px;">${employee.firstName} ${employee.lastName}
                     </b>
                     <br>
                     <br>
                     <br>
-                    <p style="color:white;font-size:5mm">Age: ${employee.age}</p>
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">Age: ${employee.age}</p>
                 
                     <br>
-                    <p style="color:white;font-size:5mm">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Gender:
 
                         ${employee.gender}
                     </p>
                     
                     <br>
-                    <p style="color:white;font-size:5mm">
+                    <p style="background:white;border-radius:50px 50px;padding:0px 5px;font-size:5mm">
                         Contact:
                         ${employee.contactNumber}
                     </p>
@@ -148,7 +149,7 @@
                                     <td><font color="black">${staff.age}</font></td>
                                     <td><font color="black">${staff.gender}</font></td>
                                     <td><font color="black">${staff.address}</font></td>
-                                    <td style="border-right: none; border-left: rgb(202, 202, 202) 1px solid; width:300px;">
+                                    <td style="border-right: none; border-left: rgb(202, 202, 202) 1px solid; width:150px;">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="editStaff.html?id=${staff.staffId}" class="btn btn-secondary"><i class="fas fa-edit"></i></a>
                                                 <a href="deleteStaff.html?id=${staff.staffId}" class="btn btn-secondary"><i class="fas fa-trash-alt"></i></a>

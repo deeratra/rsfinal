@@ -25,13 +25,14 @@ public class StaffDAOImpl implements StaffDAO {
 	public String addStaff(Staff staff) {
 		// TODO Auto-generated method stub
 		try {
-			if(staffDao.getStaff(staff.getStaffId()) == null){
+			//if(staffDao.getStaff(staff.getStaffId()) == null)
 			sessionFactory.getCurrentSession().save(staff);
-			return "success";}
-			else{
-				return "fail";
-			}
-		} catch (HibernateException e) {
+			System.out.println("@3");
+			return "success";
+			
+			
+			
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "fail";
@@ -51,7 +52,7 @@ public class StaffDAOImpl implements StaffDAO {
 		try {
 			sessionFactory.getCurrentSession().delete(staff);
 			return "success";
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "fail";
@@ -69,7 +70,7 @@ public class StaffDAOImpl implements StaffDAO {
 			query2.setParameter(0, id);
 			Staff inv= query2.getSingleResult();
 				return inv;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -87,7 +88,7 @@ public class StaffDAOImpl implements StaffDAO {
 			query2.setParameter(1, name);
 			List<Staff> inv= query2.getResultList();
 				return inv;
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
@@ -99,7 +100,7 @@ public class StaffDAOImpl implements StaffDAO {
 		try {
 			sessionFactory.getCurrentSession().update(staff);
 			return "success";
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "fail";

@@ -13,7 +13,7 @@ public class LoginServiceImpl implements LoginService {
 	LoginDAO logindao;
 	
 	@Override
-	public Login Authenticate(Login login) {
+	public int Authenticate(Login login) {
 		// TODO Auto-generated method stub
 		return logindao.Authenticate(login);
 	}
@@ -24,4 +24,15 @@ public class LoginServiceImpl implements LoginService {
 		return logindao.registerAdmin(login);
 	}
 
+	public Login getUser(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Login getProfile(Login login) {
+		// TODO Auto-generated method stub
+		return logindao.getProfile(login);
+	}
+
+	
 }
